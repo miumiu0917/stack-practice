@@ -4,6 +4,8 @@ module Pfad
     , take'
     , reverse'
     , repeat'
+    , zip'
+    , elem'
     ) where
 
 maximum' :: (Ord a) => [a] -> a
@@ -28,3 +30,14 @@ reverse' (x:xs) = reverse' xs ++ [x]
 
 repeat' :: a -> [a]
 repeat' x = x : repeat' x
+
+zip' :: [a] -> [b] -> [(a,b)]
+zip' _ [] = []
+zip' [] _ = []
+zip' (x:xs) (y:ys) = (x,y) : (zip' xs ys)
+
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' a [] = False
+elem' a (x:xs)
+        | a == x = True
+        | otherwise = elem' a xs
