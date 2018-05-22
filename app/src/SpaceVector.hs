@@ -4,6 +4,8 @@ module SpaceVector
     , multiply
     , dot
     , minus
+    , d
+    , len
     ) where
 
 data Vector a = Vector a a a deriving (Show)
@@ -21,3 +23,11 @@ minus :: (Num a) => Vector a -> Vector a -> Vector a
 Vector x1 y1 z1 `minus` Vector x2 y2 z2 = v1 `plus` ((-1) `multiply` v2)
   where v1 = Vector x1 y1 z1
         v2 = Vector x2 y2 z2
+
+d :: (Floating a) => Vector a -> Vector a -> a
+d (Vector x1 y1 z1) (Vector x2 y2 z2) = len $ v1 `minus` v2 
+  where v1 = Vector x1 y1 z1
+        v2 = Vector x2 y2 z2
+
+len :: (Floating a) => Vector a -> a
+len (Vector x1 y1 z1) = sqrt $ x1^2 + y1^2 + z1^2
